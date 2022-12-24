@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimum-scale=1, target-densitydpi=device-dpi" />">
+<link rel="stylesheet" type="text/css" href="static/main.css"/>
+<link href="static/favicon.ico"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<title>TLP</title>
+</head>
+<body>
+<!-- Start your code here -->
+
+<div class="main" id="banner">
+  <h1 class="bigAndBold" id="title" style="text-shadow: 0.15vh 0.15vh Black;font-size:5vh;padding-top: 1vh;width: fit-content;">ThinkLikePotato</h1>
+  <h3 class="consolas" id="tagline" style="color:Black;width: 98%;font-weight: bold;padding-bottom:2vh;white-space: nowrap;font-size:1.9vh;">{{ tagline|safe }}</h3>
+  <div id="bannerSpacer" style="height: 1px;width: 100%;"></div>
+</div>
+
+<div class="playerControls" id="controls">
+  <button class="playerButtons" id="playPauseBtn" role="button"><i class="fa-solid fa-play" style="font-style: normal;font-size:150%;"></i></button>
+  <button class="playerButtons" id="backBtn" role="button"><i class="fa-solid fa-backward" style="font-style: normal;font-size:150%;"></i></button>
+  <button class="playerButtons" id="skipBtn" role="button"><i class="fa-solid fa-forward" style="font-style: normal;font-size:150%;"></i></button>
+  <div id="volumeRocker" style="width: 150%;">
+    <button class="playerButtons" id="volUp" role="button" style="margin-bottom: 5%;"><i class="fa-solid fa-volume-up" style="font-style: normal;"></i></button>
+    <button class="playerButtons" id="volDown" role="button" style="margin-top: 5%;"><i class="fa-solid fa-volume-down" style="font-style: normal;"></i></button>
+  </div>
+</div>
+
+<div><div>
+  <div id="scroll-container">
+    <div id="scroll-text"><i class="fa-solid fa-music" style="font-style: normal;font-family: fa-solid;white-space: nowrap;"></i><i style="font-family: Consolas, monaco, monospace;font-style: normal;white-space: nowrap;"> {{ currentSong }} </i><i class="fa-solid fa-music" style="font-style: normal;font-family: fa-solid;white-space: nowrap;"></i><div>
+  </div>
+  </div></div>
+
+<div id="songListContainer" style="margin: auto; gap: 10%;width: 95%;margin-bottom: 0vh;margin-top: 2vh;overflow-y: auto;height: 60vh;">
+  {{ songList|safe }}
+</div>
+
+<div class="main" id="songInfoSection" style="position: absolute;bottom: 0;margin-left: auto;margin-right: auto;margin-bottom: 1vh;">
+  <form class="newSongEntry" id="newSongEntry" action="/addSong" method="post">
+    <input name="songRequest" style="width: 100%;background-color: #161616;display: block;border: 0.2vh solid black;color: white;border-radius: 4px;" type="text"/>
+    <div style="width: 2%;"></div>
+    <button id="addSongButton" class="addSongButton" type="submit"><i class="fa-solid fa-plus" style="font-style: normal;font-family: fa-solid;"></i><i> </i><i class="fa-solid fa-music" style="font-style: normal;font-family: fa-solid;font-size: 100%;"></i></button>
+  </form> 
+</div>
+
+
+
+<script>
+  document.getElementById("banner").style.width = $(window).width();
+  document.getElementById("controls").style.width = (document.getElementById("banner").offsetWidth)+"px";
+  document.getElementById("title").style.fontSize = (parseInt(document.getElementById("title").style.fontSize,10)*0.8)+"vh";
+  console.log(parseInt(document.getElementById("tagline").style.fontSize,10))
+  document.getElementById("tagline").style.fontSize = (1.9*0.8)+"vh";
+  document.getElementById("banner").style.width = (parseInt(document.getElementById("controls").style.width,10))+"px";
+  document.getElementById("songInfoSection").style.width = (document.getElementById("banner").offsetWidth)+"px";
+  document.getElementById("scroll-container").style.width = (document.getElementById("banner").offsetWidth)+"px";
+  document.getElementById("songListContainer").style.width = (document.getElementById("banner").offsetWidth)+"px";
+
+  document.getElementById("newSongEntry").style.width = (document.getElementById("songInfoSection").style.width * 0.9)+"px";
+  var marginWidth = ($(window).width() - parseInt(document.getElementById("songInfoSection").style.width,10))/2 +"px";
+  document.getElementById("songInfoSection").style.marginLeft = marginWidth;
+  document.getElementById("songInfoSection").style.marginRight = marginWidth;
+  
+</script>
+<script>
+  $("#playPauseBtn").click(function() {
+    $.post('/playPauseBtn')
+  })
+  $("#backBtn").click(function() {
+    $.post('/backBtn')
+  })
+  $("#skipBtn").click(function() {
+    $.post('/skipBtn');
+    setTimeout(() => {  if (!keyboardUp) { location.reload(); } }, 1000)
+  })
+  $("#volUp").click(function() {
+    $.post('/volUp');
+  })
+  $("#volDown").click(function() {
+    $.post('/volDown');
+  })
+  $("#addSongButton").click(function() {
+    setTimeout(() => {  if (!keyboardUp) { location.reload(); } }, 1000)
+  })
+</script>
+
+<script>
+  var keyboardUp = false;
+  window.addEventListener("resize", (e) => {
+    if (keyboardUp) {
+      keyboardUp = false;
+    }
+    else {
+      keyboardUp = true;
+    }
+  })
+
+  setInterval(requestNewSongData, 15000); //every 15 seconds send out a 
+
+  function requestNewSongData()
+  { 
+    if (!keyboardUp) { location.reload(); }
+  }
+</script>
+</body>
+</html>

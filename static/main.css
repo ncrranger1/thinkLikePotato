@@ -1,0 +1,236 @@
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: url("Segoe UI Bold.ttf");
+}
+
+@font-face {
+  font-family: "Segoe UI Normal";
+  font-weight: 400;
+  src: url("Segoe UI.ttf");
+}
+
+@font-face{
+  font-family: "fa-solid";
+  font-weight: 900;
+  src:url("fa-solid-900.ttf");
+}
+
+html{
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  margin: 0rem;
+  overflow: hidden;
+}
+
+.main{
+  width: fit-content;
+  margin: auto;
+  background-color: orange;
+  border: 0.2vh solid Beige;
+  border-radius: 0.5vh;
+}
+
+.bigAndBold{
+  color: #FFFFFF;
+  font-family: "Segoe UI";
+  font-weight: 400;
+  margin: auto;
+  text-align: center;
+}
+  
+.consolas {
+  margin: auto;
+  font-family: Consolas, monaco, monospace;
+  font-weight: 300;
+  font-size:0.8vw;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.playerControls {
+  display: flex;
+  overflow: auto;
+  gap: 1.5%;
+  width: 100%;
+  height: fit-content;
+  margin: auto;
+  padding-top: 1vh;
+  font-size: 1.5vh;
+}
+
+.playerButtons {
+  background-image: linear-gradient(#434343,#161616);
+  border: 0.1vh solid orange;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: "fa-solid";
+  font-size:120%;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  line-height: 1.47059;
+  overflow: visible;
+  padding: 1vh, 2vw;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.playerButtons:disabled {
+  cursor: default;
+  opacity: .3;
+}
+
+.playerButtons:hover {
+  background-image: linear-gradient(orange, rgb(174, 114, 3));
+  border-color: orange;
+  text-decoration: none;
+}
+
+.playerButtons:active {
+  background-image: linear-gradient(orange, rgb(174, 114, 3));
+  border-color: orange;
+  outline: none;
+}
+
+.playerButtons:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.newSongEntry {
+  display: flex;
+  overflow: auto;
+  width: 95%;
+  height: fit-content;
+  margin: auto;
+  font-size: 1vh;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.addSongButton {
+  background-image: linear-gradient(#434343,#161616);
+  border: 0.2vh solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: "fa-solid";
+  font-size:200%;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  line-height: 1.47059;
+  min-width: 80px;
+  overflow: visible;
+  padding: 1vh, 2vw;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  width: 20%;
+  padding-top: 3.5%;
+  padding-bottom: 3.5%;
+  margin-right: 0%;
+  margin-left: auto;
+}
+
+.addSongButton:hover {
+  background-image: linear-gradient(white, grey);
+  border-color: orange;
+  color: black;
+  text-decoration: none;
+}
+
+.addSongButton:active {
+  background-image: linear-gradient(white, grey);
+  border-color: orange;
+  color: black;
+  outline: none;
+}
+
+#scroll-container {
+  border: 0.1vh solid orange;
+  border-radius: 1px;
+  overflow: hidden;
+  width: 95%;
+  height: fit-content;
+  margin: auto;
+  background-color: black;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+#scroll-text {
+  color: white;
+  font-size: 2vh;
+  width: 100%;
+  /* animation properties */
+  -moz-transform: translateX(60%);
+  -webkit-transform: translateX(60%);
+  transform: translateX(60%);
+  
+  -moz-animation: my-animation 16s linear infinite;
+  -webkit-animation: my-animation 16s linear infinite;
+  animation: my-animation 16s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from { -moz-transform: translateX(100%); }
+  to { -moz-transform: translateX(-100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from { -webkit-transform: translateX(100%); }
+  to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+.songListItem {
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-bottom: 1%;
+}
+
+.songListItemText {
+  color: white;
+  font-family: 'Segoe UI Normal';
+  font-style: normal;
+  font-stretch: normal;
+  font-size: 1.5vh;
+}
